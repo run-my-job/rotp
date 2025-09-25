@@ -1,20 +1,17 @@
 name: Tests
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: push
 
 jobs:
   test:
 
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
 
     strategy:
       # Include '3.5.0-preview1' to test compatibility with the upcoming Ruby 3.5 release.
       matrix:
-        ruby-version: ['3.5.0-preview1', '3.4', '3.3', '3.2', '3.0', '2.7', '2.3', 'truffleruby-head']
+        ruby-version: ['3.5.0-preview1', '3.4', '3.3', '3.2', '3.0', '2.7', '2.3',
+          'truffleruby-head']
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby ${{ matrix.ruby-version }}
